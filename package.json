@@ -1,0 +1,25 @@
+{
+  "name": "playwright-test",
+  "version": "1.0.0",
+  "description": "End-to-end test automation framework using Playwright’s native test runner for fast, reliable, and maintainable UI and API testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnupriyaAM/Playwright-Test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnupriyaAM/Playwright-Test/issues"
+  },
+  "homepage": "https://github.com/AnupriyaAM/Playwright-Test#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.0"
+  }
+}
