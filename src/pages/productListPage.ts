@@ -1,25 +1,30 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "../utils/basePage";
+import { Constants } from "../utils/constants";
 
 export class ProductListPage extends BasePage {
     private pageHeading = ".app_logo";
     private productLabel = "//span[@data-test='title']";
+    private productList = ".inventory_item";
+    private itemName = ".inventory_item_name";
+    private itemDesc = ".inventory_item_desc";
+    private itemPrice = ".inventory_item_price";
+    private productByTitle = (productTitle: string) => `//div[text()='${productTitle}']`;
 
     /**
      * Validates that the main page heading and product label are displayed correctly.
      */
     async validateHeading() {
-        await expect(this.page.locator(this.pageHeading)).toHaveText("Swag Labs");
-        await expect(this.page.locator(this.productLabel)).toHaveText("Products");
+        await expect(this.page.locator(this.pageHeading)).toHaveText(Constants.product.title);
+        await expect(this.page.locator(this.productLabel)).toHaveText(Constants.product.product);
     }
 
     /**
      * Logs the total number of products displayed on the inventory page.
      */
     async validateProductList() {
-        const productList = await this.page.locator(".inventory_item").count();
+        const productList = await this.page.locator(this.productList).count();
         console.log(`product List displayed is ${productList}`);
-        // console.log(Math.floor(Math.random()*productList)); // e.g., 0.837492
     }
 
     /**
@@ -29,13 +34,13 @@ export class ProductListPage extends BasePage {
      * @throws Error if product details cannot be retrieved
      */
     async getProductDetails() {
-        const products = this.page.locator('.inventory_item');
+        const products = this.page.locator(this.productList);
         const count = await products.count();
         const randomIndex = Math.floor(Math.random() * count);
         const randomProduct = products.nth(randomIndex);
-        const productTitle = await randomProduct.locator('.inventory_item_name').textContent();
-        const productDesc = await randomProduct.locator('.inventory_item_desc').textContent();
-        const productPrice = await randomProduct.locator('.inventory_item_price').textContent();
+        const productTitle = await randomProduct.locator(this.itemName).textContent();
+        const productDesc = await randomProduct.locator(this.itemDesc).textContent();
+        const productPrice = await randomProduct.locator(this.itemPrice).textContent();
         if (!productTitle || !productDesc || !productPrice) {
             throw new Error("Failed to get product details from inventory page");
         }
@@ -51,6 +56,6 @@ export class ProductListPage extends BasePage {
      * @param productTitle - The exact title of the product to select
      */
     async selectProduct(productTitle: string) {
-        await this.click(this.page.locator(`//div[text()='${productTitle}']`), productTitle)
+        await this.click(this.page.locator(this.productByTitle(productTitle)), productTitle)
     }
 }
