@@ -20,15 +20,15 @@ export class CheckoutPage extends BasePage {
      * @param product - Object containing productTitle, productDesc, and productPrice to validate against the checkout overview page.
      */
     async checkoutOverview(product: { productTitle: string; productDesc: string; productPrice: string }) {
-        await expect(this.page.locator(this.checkoutTitle)).toHaveText(Constants.checkout.overview)
-        await expect(this.page.locator(this.qtyLabel)).toHaveText(Constants.cart.quantity)
-        await expect(this.page.locator(this.descLabel)).toHaveText(Constants.cart.description)
-        await expect(this.page.locator(this.itemName)).toHaveText(product.productTitle)
-        await expect(this.page.locator(this.itemDesc)).toHaveText(product.productDesc)
-        await expect(this.page.locator(this.itemPrice)).toHaveText(product.productPrice)
+        await expect(this.page.locator(this.checkoutTitle)).toHaveText(Constants.checkout.overview);
+        await expect(this.page.locator(this.qtyLabel)).toHaveText(Constants.cart.quantity);
+        await expect(this.page.locator(this.descLabel)).toHaveText(Constants.cart.description);
+        await expect(this.page.locator(this.itemName)).toHaveText(product.productTitle);
+        await expect(this.page.locator(this.itemDesc)).toHaveText(product.productDesc);
+        await expect(this.page.locator(this.itemPrice)).toHaveText(product.productPrice);
         await expect(this.page.locator(this.cancelBtn)).toBeVisible();
         await expect(this.page.locator(this.finishBtn)).toBeVisible();
-        await expect(this.page.locator(this.finishBtn)).toHaveText(Constants.checkout.finish)
+        await expect(this.page.locator(this.finishBtn)).toHaveText(Constants.checkout.finish);
         await this.click(this.page.locator(this.finishBtn), Constants.checkout.finish);
     }
 }

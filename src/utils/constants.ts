@@ -32,7 +32,11 @@ export const Constants = {
         overview: "Checkout: Overview",
         finish: "Finish",
         yourInfo: "Checkout: Your Information",
-        continue: "Continue"
+        continue: "Continue",
+        firstNameError:"Error: First Name is required",
+        lastnameError: "Error: Last Name is required",
+        postError: "Error: Postal Code is required",
+        empty:""
     },
     thankyou: {
         title: "Thank you for your order!",

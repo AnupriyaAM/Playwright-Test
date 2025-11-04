@@ -56,6 +56,6 @@ export class ProductListPage extends BasePage {
      * @param productTitle - The exact title of the product to select
      */
     async selectProduct(productTitle: string) {
-        await this.click(this.page.locator(this.productByTitle(productTitle)), productTitle)
+        await this.click(this.page.locator(this.productByTitle(productTitle)), productTitle);
     }
 }
