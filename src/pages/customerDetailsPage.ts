@@ -26,6 +26,7 @@ export class CustomerDetailsPage extends BasePage {
         await this.fill(this.page.locator(this.lastName), faker.person.lastName());
         await this.fill(this.page.locator(this.postalCode), faker.location.zipCode());
         await expect(this.page.locator(this.cancel)).toBeVisible();
+        await this.captureScreenshot();
         await this.click(this.page.locator(this.continue), Constants.checkout.continue);
     }
     
@@ -54,6 +55,7 @@ export class CustomerDetailsPage extends BasePage {
         await this.fill(this.page.locator(this.postalCode), faker.location.zipCode());
         await this.click(this.page.locator(this.continue), Constants.checkout.continue);
         await expect(this.page.locator(this.errorMsg)).toHaveText(Constants.checkout.firstNameError);
+        await this.captureScreenshot();
         await this.fill(this.page.locator(this.lastName), Constants.checkout.empty);
         await this.fill(this.page.locator(this.postalCode), Constants.checkout.empty);
     }
@@ -69,6 +71,7 @@ export class CustomerDetailsPage extends BasePage {
         await this.fill(this.page.locator(this.postalCode), faker.location.zipCode());
         await this.click(this.page.locator(this.continue), Constants.checkout.continue);
         await expect(this.page.locator(this.errorMsg)).toHaveText(Constants.checkout.lastnameError);
+        await this.captureScreenshot();
         await this.fill(this.page.locator(this.firstName), Constants.checkout.empty);
         await this.fill(this.page.locator(this.postalCode), Constants.checkout.empty);
     }
@@ -83,5 +86,6 @@ export class CustomerDetailsPage extends BasePage {
         await this.fill(this.page.locator(this.lastName), faker.person.lastName());
         await this.click(this.page.locator(this.continue), Constants.checkout.continue);
         await expect(this.page.locator(this.errorMsg)).toHaveText(Constants.checkout.postError);
+        await this.captureScreenshot();
     }
 }

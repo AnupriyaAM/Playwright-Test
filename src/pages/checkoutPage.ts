@@ -29,6 +29,7 @@ export class CheckoutPage extends BasePage {
         await expect(this.page.locator(this.cancelBtn)).toBeVisible();
         await expect(this.page.locator(this.finishBtn)).toBeVisible();
         await expect(this.page.locator(this.finishBtn)).toHaveText(Constants.checkout.finish);
+        await this.captureScreenshot();
         await this.click(this.page.locator(this.finishBtn), Constants.checkout.finish);
     }
 }

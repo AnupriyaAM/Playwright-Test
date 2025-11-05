@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import test, { Page, Locator } from '@playwright/test';
 
 export class BasePage {
     page: Page;
@@ -14,7 +14,7 @@ export class BasePage {
    */
     async navigateTo(url: string) {
         try {
-            await this.page.goto(url,{ waitUntil: 'domcontentloaded', timeout: 60000 });
+            await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
             console.log(`Successfully navigated to ${url}`);
         } catch (error) {
             console.log(`Failed to navigate to ${url}: ${error}`);
@@ -25,7 +25,7 @@ export class BasePage {
      * Get page title
      * @returns The page title
      */
-    async getTitle(){
+    async getTitle() {
         return await this.page.title();
     }
 
@@ -81,14 +81,17 @@ export class BasePage {
     }
 
     /**
-     * Takes a full-page screenshot and saves it with the given step name.
-     * @param stepName - The name used in the screenshot file.
+     * Capture screenshot with auto-generated name and attach to the report
+     * @param stepName Optional custom step name
      */
-    async screenshot(stepName: string) {
-        await this.page.screenshot({
-            path: `test-results/screenshots/${stepName}.png`,
-            fullPage: true
+    async captureScreenshot(stepName?: string) {
+        const screenshotName = stepName
+            ? `${stepName.replace(/\s+/g, '_')}_${new Date().getMilliseconds()}.png`
+            : `screenshot_${new Date().getMilliseconds()}.png`;
+        const screenshotBuffer = await this.page.screenshot();
+        await test.info().attach(screenshotName, {
+            body: screenshotBuffer,
+            contentType: 'image/png',
         });
     }
-
 }

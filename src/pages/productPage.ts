@@ -26,6 +26,7 @@ export class ProductPage extends BasePage {
         await expect(this.page.locator(this.detailDesc)).toHaveText(product.productDesc);
         await this.page.locator(this.detailPrice).isVisible();
         await expect(this.page.locator(this.detailPrice)).toHaveText(product.productPrice);
+        await this.captureScreenshot();
     }
 
     /**
@@ -37,5 +38,6 @@ export class ProductPage extends BasePage {
         await this.click(this.page.locator(this.addToCart), Constants.product.addToCart);
         await expect(this.page.locator(this.removeBtn)).toHaveText(Constants.cart.remove);
         await expect(this.page.locator(this.cartBadge)).toBeVisible();
+        await this.captureScreenshot();
     }
 }

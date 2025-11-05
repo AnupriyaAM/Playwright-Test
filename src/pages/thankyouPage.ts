@@ -17,6 +17,7 @@ export class ThankyouPage extends BasePage {
         await expect(this.page.locator(this.headerText)).toHaveText(Constants.thankyou.title);
         await expect(this.page.locator(this.orderText)).toHaveText(Constants.thankyou.orderText);
         await expect(this.page.locator(this.backToProduct)).toHaveText(Constants.thankyou.backHome);
+        await this.captureScreenshot();
     }
 
     /**
@@ -25,5 +26,6 @@ export class ThankyouPage extends BasePage {
     async backHomeValidation() {
         await this.click(this.page.locator(this.backToProduct), Constants.thankyou.backHome);
         await expect(this.page.locator(this.productTitle)).toHaveText(Constants.product.product);
+        await this.captureScreenshot();
     }
 }

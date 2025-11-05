@@ -41,6 +41,7 @@ export class ProductListPage extends BasePage {
         const productTitle = await randomProduct.locator(this.itemName).textContent();
         const productDesc = await randomProduct.locator(this.itemDesc).textContent();
         const productPrice = await randomProduct.locator(this.itemPrice).textContent();
+        await this.captureScreenshot();
         if (!productTitle || !productDesc || !productPrice) {
             throw new Error("Failed to get product details from inventory page");
         }

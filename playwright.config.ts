@@ -22,13 +22,14 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    screenshot: 'off',
     trace: 'on-first-retry',
   },
 
@@ -37,7 +38,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        browserName: 'chromium', channel: 'chrome', headless: true,
+        browserName: 'chromium', channel: 'chrome', headless: false,
         viewport: null,
         launchOptions: {
           args: ["--start-maximized"]

@@ -12,6 +12,7 @@ export class LoginPage extends BasePage {
      */
     async validateTitle() {
         await expect(this.page).toHaveTitle(/Swag Labs/);
+        await this.captureScreenshot();
     }
 
     /**
@@ -24,6 +25,7 @@ export class LoginPage extends BasePage {
     async login(userName: string, password: string) {
         await this.fill(this.page.locator(this.userName), userName, "User Name");
         await this.fill(this.page.locator(this.password), password, "User Password");
+        await this.captureScreenshot();
         await this.click(this.page.locator(this.loginButton), "Login");
     }
 }

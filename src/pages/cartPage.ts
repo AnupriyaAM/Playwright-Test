@@ -40,6 +40,7 @@ export class CartPage extends BasePage {
         await expect(this.page.locator(this.continueBtn)).toHaveText(Constants.cart.contShopping);
         await this.page.locator(this.checkoutBtn).isVisible();
         await expect(this.page.locator(this.checkoutBtn)).toHaveText(Constants.cart.checkout);
+        await this.captureScreenshot();
     }
 
     /**
@@ -51,6 +52,7 @@ export class CartPage extends BasePage {
         await this.click(this.page.locator(this.cartID), Constants.cart.cartBasket);
         await this.click(this.page.locator(this.removeBtn), Constants.cart.remove);
         await expect(this.page.locator(this.cartProduct)).toBeHidden();
+        await this.captureScreenshot();
     }
 
     /**
@@ -61,6 +63,7 @@ export class CartPage extends BasePage {
         await this.click(this.page.locator(this.cartID), Constants.cart.cartBasket);
         await this.click(this.page.locator(this.continueBtn), Constants.cart.contShopping);
         await expect(this.page.locator(this.title)).toHaveText(Constants.product.product);
+        await this.captureScreenshot();
     }
 
 }
