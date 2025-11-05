@@ -37,7 +37,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        browserName: 'chromium', channel: 'chrome', headless: false,
+        browserName: 'chromium', channel: 'chrome', headless: true,
         viewport: null,
         launchOptions: {
           args: ["--start-maximized"]
